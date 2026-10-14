@@ -1,0 +1,23 @@
+---
+// Den nuvarande dackoform.com, överförd 1:1 från Webflow-exporten (2026-10-14).
+// Markup ligger orörd i src/legacy/webflow-index.html. CSS, JS och bilder ligger i public/.
+// Ersätts av den nya designen när den är klar (utkast i src/pages/_draft/).
+import raw from '../legacy/webflow-index.html?raw';
+
+const pick = (re: RegExp) => raw.match(re)?.[1] ?? '';
+const head = pick(/<head>([\s\S]*?)<\/head>/);
+const body = pick(/<body[^>]*>([\s\S]*?)<\/body>/);
+const bodyClass = pick(/<body[^>]*class="([^"]*)"/);
+const wfPage = pick(/data-wf-page="([^"]*)"/);
+const wfSite = pick(/data-wf-site="([^"]*)"/);
+---
+<!doctype html>
+<html lang="en" data-wf-page={wfPage} data-wf-site={wfSite}>
+  <head>
+    <Fragment set:html={head} />
+    <meta name="description" content="Dackoform, the studio of Carl Dackö. Brand identity, type, web and advertising for agencies and start-ups." />
+  </head>
+  <body class={bodyClass}>
+    <Fragment set:html={body} />
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { getWork } from '../../lib';
+const work = (await getWork()).slice(0, 4);
+---
+<Base>
+  <section class="intro">
+    <h1>Brands taken from strategy to finished site.</h1>
+    <p class="lede muted">TODO: positioning text. Concept, identity, type and copy in Swedish, Danish, Norwegian, German and English, delivered by one creative director.</p>
+  </section>
+  <section>
+    <h2>Selected work</h2>
+    <div class="grid">{work.map((entry) => <CaseCard entry={entry} />)}</div>
+    <p><a href="/work/">All work</a></p>
+  </section>
+</Base>
+<style>
+  .intro { margin-bottom: 5rem; max-width: 50rem; }
+  .lede { font-size: var(--step-1); }
+  .grid { display: grid; gap: 3rem 2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+</style>

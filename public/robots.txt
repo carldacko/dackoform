@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.dackoform.com/sitemap-index.xml
